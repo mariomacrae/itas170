@@ -1,0 +1,141 @@
+sudo apt install gnome-tweaks gnome-shell-extension-managetr
+sudo apt install gnome-tweaks gnome-shell-extension-manager
+mkdir test
+~/move downloads
+move ~/downloads
+cd ~/code/ITAS170/week01
+bash toolbox.sh
+cd ~/code/itas170/week01
+bash toolbox.sh
+ls
+ls -a
+la -al
+cd ..
+cd desktop
+cd Desktop
+mv [200~single-fresh-red-strawberry-on-table-green-background-food-fruit-sweet-macro-juicy-plant-image-photo~
+mv single-fresh-red-strawberry-on-table-green-background-food-fruit-sweet-macro-juicy-plant-image-photo downloads
+cd ~/code/ITAS170/week01
+~/code/ITAS170/week01
+bash toolbox.sh
+cd ~code
+cd ~/code/
+cd /ITAS170/week01
+cd /ITAS170/
+cd ITAS170
+cd week01
+bash toolbox.sh
+cat access.log
+grep "Googlebot" access.log
+curl -f https://zed.dev/install.sh | sh
+sudo snap install curl -f https://zed.dev/install.sh | sh~
+sudo snap install curl -f https://zed.dev/install.sh | sh
+bash toolbox.sh
+bash toolbox.sh > toolbox.txt
+cat toolbox.txt
+nanospace
+nano space
+[200~142.232.10.25 - - [10/Sep/2026:00:41:44 -0700] "GET / HTTP/1.1" 200 5316 "-" "Mozilla/
+5.0 ..."
+access.log
+claude --version
+cd ~/cide/ITAS170/week01
+cd ~/code/ITAS170/week01
+bash toolbox.sh
+claude --version
+access.log
+claude --version
+curl -f https://zed.dev/install.sh | sh
+sudo apt update && sudo apt install -y curl
+```
+claude --version
+pwd
+ls
+bash access.log
+access.log
+touch hunt.md
+grep "404" hunt.md
+wc -1 access.log
+wc -- -1 access.log
+cd code
+cd week-01
+cd week01
+cd ITAS170
+cd week01
+wc -1 access.log
+wc access.log
+grep client access.log
+grep "client" access.log
+grep ^client access.log
+grep-i "^client" access.log
+grep -i "^client" access.log
+grep "^1" access.log
+cut -d' ' -f1 access.log | sort | uniq -c | sort -nr | head -5
+cut -d' ' -f4 access.log | cut -d: f2 | sort | uniq -c | sort -nr
+cut -d' ' -f4 access.log | cut -d: -f2 | sort | uniq -c | sort -nr
+cut -d' ' -f4 |cut -d: -f2 | sort | uniq-c | sort -nr
+cd code
+cd ITAS170
+cat access.log | grep "404"
+grep -c "404" access.log
+grep -c access.log
+wc -1 access.md
+wc access.md
+cd ..
+cat access.md
+wc access.log
+cd ..
+cd ITAS170
+cd week01
+wc access.log
+grep "404" access.log
+wc "404" access.log
+wc access.log | grep "404"
+grep -c "404" access.log
+cut-d' ' -f1 access.log | sort | uniq-c | sort -r | head-5
+cut -d ' ' -f2 access.log | sort | uniq -c | sort -nr
+cut -d ' ' -f2 access.log | sort | uniq -c | sort -nr | head -1
+cut -d: -f2 access.log | sort | uniq -c | sort -nr | head -1
+cut -d' ' -f4 access.log | cut -d: -f2 | sort | uniq -c | sort -nr
+cut -d' ' -f4 access.log | cut -d -f2 | sort | uniq -c | sort -nr
+cut -d' ' -f4 access.log | cut -d: -f2 | sort | uniq -c | sort -nr
+cut -d' ' -f7 access.log | sort -u | wc -1
+cut -d' ' -f7 access.log | sort -u | wc -l
+cut -d' ' -f7 access.log | grep "404" |  sort -u | wc -l
+grep '"404 ' access.log | cut -d' ' | sort -u | wc -l
+grep '"404 ' access.log | cut -d' ' -f7 | sort | uniq -c | sort -nr
+grep '" 404 ' access.log | cut -d' ' -f7 | sort | uniq -c | sort -nr
+grep '"404 ' access.log  | cut -d' ' -f7 | sort | uniq -c | sort -nr
+grep '" 404 ' access.log | cut -d' ' -f7 | sort | uniq -c | sort -nr
+grep '"404  ' access.log  | cut -d' ' -f7 | sort | uniq -c | sort -nr
+grep '"404 ' access.log  | cut -d' ' -f7 | sort | uniq -c | sort -nr
+sort -t' ' -k10, 10nr access.log | head -1
+sort -t' ' -k10,10nr access.log | head -1
+grep -c "Googlebot" access.log
+grep -i "bot" access.log
+grep -c "bot" access.md
+grep -c "bot" access.log
+grep -c "12/Sep/2026" access.log
+grep -c "10/Sep/2026"
+grep -c "10/Sep/2026" access.log
+grep -c "1/Sep/2026" access.log
+grep -c "2-Sep-2025" access.log
+grep -c "POST" access.log
+grep -c "POST" "/wp-login.php" access.log
+grep -c '"POST ' access.log
+grep -c '"/wp-login.php ' access.log
+grep -c "POST" /wp-login.php" access.log
+
+grep -c '"POST" "/wp-login.php ' access.log
+
+
+/clear
+command >> lab 1
+grep -x '"POST /wp-login.php ' access.log
+grep -c '"POST /wp-login.php ' access.log
+command >> lab 1 logs
+command >> lab one logs
+[200~     script — make typescript of terminal session~
+script — make typescript of terminal session
+$ bash | tee /itas01.txt
+history -w session_history.txt && cat .bash_history > full_session_log.txt
