@@ -1,0 +1,11 @@
+tier,example_model,input_usd_per_million,output_usd_per_million,context_window_tokens,as_of
+yardstick,Claude Opus 4.8 (the course's yardstick),5.00,25.00,1000000,2026-09-27
+frontier-top,Claude Fable 5.1,10.00,50.00,1000000,2026-09-27
+frontier-mid,Claude Opus 5.5,4.00,20.00,1000000,2026-09-27
+frontier-fast,Claude Sonnet 5,2.00,10.00,1000000,2026-09-27
+frontier-small,Claude Haiku 4.5,1.00,5.00,200000,2026-09-27
+open-weights,Kimi K3 (Moonshot API),3.00,15.00,1048576,2026-09-27
+open-weights,DeepSeek V4 Pro (API; off-peak),0.66,1.98,1048576,2026-09-27
+open-weights,DeepSeek V4.1 Flash (API; off-peak),0.15,0.60,1048576,2026-09-27
+open-weights,GLM-5.3 (Z.ai API),1.40,4.40,1048576,2026-09-27
+local,Qwen3 8B on Ollama (your machine; default window),0.00,0.00,4096,2026-09-11
