@@ -1,0 +1,13 @@
+bash        /usr/bin/bash
+git         MISSING
+ssh         /usr/bin/ssh
+docker      MISSING
+code        MISSING
+uv          MISSING
+ollama      MISSING
+nvidia-smi  MISSING
+claude      MISSING
+opencode    MISSING
+
+GNU bash, version 5.3.9(1)-release (x86_64-pc-linux-gnu)
+docker: not installed, or not running
