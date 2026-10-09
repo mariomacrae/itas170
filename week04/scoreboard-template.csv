@@ -1,0 +1,2 @@
+week,task,model,correct,verified_by,seconds,note
+4,P4 find the bug,qwen3:8b (local; Q4_K_M; --think=false),partly,ran the fixed script,11,fixed quoting and used du/awk instead; never named the directory case that empties $s
