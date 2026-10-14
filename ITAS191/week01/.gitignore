@@ -1,5 +1,0 @@
-.env
-secrets/
-.venv/
-node_modules/
-*.tmp
