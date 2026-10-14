@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# list-deliverables — every file in week01–week04, minus logs, lock files and .env.
+cd "$(dirname "$0")/.." || exit 1
+find week01 week02 week03 week04 -type f \
+    ! -name '*LOG*' \
+    ! -name 'full_session_log.txt' \
+    ! -name 'session_history.txt' \
+    ! -name '.~lock.*#' \
+    ! -name '.env' \
+    | sort

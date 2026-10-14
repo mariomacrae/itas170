@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Bowlby+One&family=Coda:wght@400;800&family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="newlayout.css">
+<title>Mario Macrae Layout</title>
+<style>
+#scene { width: 320px; height: 240px; }
+#scene canvas { display: block; }
+</style>
+<body>    
+<header>
+ 
+<h1>Your First Computer: A Starting Guide</h1>
+</header>
+<nav>
+<a href="#">Home</a>
+<a href="#">About</a>
+<a href="#">Contact</a>
+</nav>
+<main>
+<section>
+<h2>About this page</h2>
+<p>In our current digital era, computers are a key part of our everyday lives. We use them for work, communication, school, and play. 
+    <br>When home computers were first invented, there were far fewer to choose from and they usually only came in desktop form.
+   Fast forward to walk into 2026, you'll walk into Staples or Best Buy and see a much bigger variety. Desktops, laptops, all-in-one, hybrid tablets. All with many types of configurations for different users. With so many options, deciding what computer is the right fit for you can be quite difficult.
+   <br>This guide is here to help you decode the most common computer lingo and how to use it to your advantage.</p>
+  <div id="scene"></div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+    const box = document.getElementById("scene");
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color("#fcfbf7");
+
+    const camera = new THREE.PerspectiveCamera(
+        60, box.clientWidth / box.clientHeight, 0.1, 100);
+    camera.position.set(2, 2, 3);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(box.clientWidth, box.clientHeight);
+    box.appendChild(renderer.domElement);
+
+    const cube = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshStandardMaterial({ color: "#FF1B95" }));  // yours
+    scene.add(cube);
+
+    scene.add(new THREE.AmbientLight("#ffffff", 1));
+    const sun = new THREE.DirectionalLight("#ffffff", 3);
+    sun.position.set(3, 4, 5);
+    scene.add(sun);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    renderer.setAnimationLoop(() => {
+        cube.rotation.y += 0.01;
+        controls.update();
+        renderer.render(scene, camera);
+    });
+    </script>
+<p>Try out the interactive spinning cube! Use the scroll wheel to zoom, the left click to spin, and the right to move the cube.</p>
+<h2>To game or not to game?</h2>
+<p>Gaming laptops and desktops are a very popular option. They are pretty enticing, what with their integrated LED lights, sleek keyboards, and cool logos. The answer is pretty self-explanatory- buying a gaming computer is only really necessary if your intention is to play video games or work with complex design tools. The main advantage these computers have is their dedicated graphics cards and fast RAM. If you don't plan to use this kind of configuration to its full potential, you're better off sticking to an ordinary computer.</p>
+</section>
+<aside>
+<h2>Things to consider</h2>
+<table>
+<caption>Component</caption>
+<tr>
+<th>RAM (Random Access Memory)</th>
+<th>Storage</th>
+<th>Form Factor</th>
+<th>Processor</th>
+</tr>
+<tr>
+<td>RAM is short-term memory on a computer that temporarily stores active data. If you mainly use your computer for light tasks like web browsing and using standard productivity software, you do not need more than 16GB. 
+    <br>Aim for 32GB or more if you plan to use the computer for gaming or high-performance video editing.</td>
+<td>Computer storage can range from 128GB to several terabytes. A good rule of thumb is to aim higher when choosing storage since it can fill up fast. 
+    <br>256GB is a good place to start if you don't plan to use too many programs and store too many files. Upwards of 512GB is good for users who want to store lots of files, especially if they edit videos or game.</td>
+<td>If you plan to work on the go, you should buy a laptop. They are the best for portability. If you plan to use the computer in only one place, desktop computers tend to be more cost-effective and are easier to upgrade.
+    <br>An all-in-one desktop is also very handy for a home-based worker, since the computer and monitor are integrated as one.
+</td>
+<td>The processor is the powerhouse of your computer, and the type you choose will make all the difference for performance. The higher the number on the processor, the more powerful your computer will be. You can't expect to do much on an Intel or AMD processor labelled 'i3' or 'Ryzen 3'. A processor labelled 'i9' or 'Ryzen 9' is the most powerful of all and is reserved for the heaviest tasks.
+    <br>The typical entry-level computer has an Intel i3/i5 or AMD Ryzen 3/5 processor. Higher-level computers use the Intel i7/19 or AMD Ryzen 7/9 processors. The AMD processors are better for gaming, and the Intel processors better for productivity.
+</td>
+</tr>
+</table>
+<h2>What kind of user are you?</h2>
+<table>
+<tr>
+<th>Light User (only web browsing/productivity)</th>
+<th>Standard User (Web Browsing, productivity, design, light gaming)</th>
+<th>Power User (Heavy gaming, video editing)</th>
+</tr>
+<tr>
+<td>An i3 processor, 256-512GB of storage, and 8-16GB of RAM should be plenty.
+<td>Aim for at least an i5 processor, 512GB storage and 16GB of RAM. This is the standard configuration for most entry-level computers. 
+<td>At the very least 32GB RAM, 1TB storage, and i7 processor. Choose a computer with a dedicated graphics processor unit for gaming or video editing. For the most powerful computer, i9 processor, at least 32GB of RAM (64 is more common) and at least 1TB or storage.
+</td>
+</tr>
+</table>
+</aside>
+</main>
+<footer>
+<p>&copy; Mario Macrae 2026</p>
+</footer>
+</body>

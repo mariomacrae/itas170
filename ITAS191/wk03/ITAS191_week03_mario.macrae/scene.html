@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>A 3D scene, to place in your layout</title>
+    <style>
+        #scene { width: 320px; height: 240px; }
+        #scene canvas { display: block; }
+    </style>
+</head>
+<body>
+    <div id="scene"></div>
+
+    <!-- PROVIDED SCAFFOLDING. To put this scene in a page of your own,
+         copy three things across: the #scene rules in the <style> block,
+         the <div id="scene"></div>, and both <script> blocks below, kept
+         together and in this order. JavaScript is week 8 and Three.js is
+         week 10 - today you are PLACING this, not writing it.
+
+         The one line that is yours: the colour on the cube. -->
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+    const box = document.getElementById("scene");
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color("#fcfbf7");
+
+    const camera = new THREE.PerspectiveCamera(
+        60, box.clientWidth / box.clientHeight, 0.1, 100);
+    camera.position.set(2, 2, 3);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(box.clientWidth, box.clientHeight);
+    box.appendChild(renderer.domElement);
+
+    const cube = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.MeshStandardMaterial({ color: "#0b6357" }));  // yours
+    scene.add(cube);
+
+    scene.add(new THREE.AmbientLight("#ffffff", 1));
+    const sun = new THREE.DirectionalLight("#ffffff", 3);
+    sun.position.set(3, 4, 5);
+    scene.add(sun);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    renderer.setAnimationLoop(() => {
+        cube.rotation.y += 0.01;
+        controls.update();
+        renderer.render(scene, camera);
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# hello-tools — my first command.
+echo "Hello from $USER on $(hostname)"
+echo "You are standing in: $(pwd)"
+echo "The time is $(date '+%H:%M') and your shell is $SHELL"
