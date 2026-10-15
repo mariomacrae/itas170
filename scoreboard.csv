@@ -2,3 +2,6 @@
 4,P4 find the bug,qwen3:8b (local; Q4_K_M; --think=false),yes,ran the fixed script,11 minutes,
 ,,Claude (Opus 5.5),yes,ran script,11seconds,
 ,,DeepSeek,yes,ran script,5 seconds,
+5,Name step in prompt most likely to go wrong.,qwen3:8b (local; Q4_K_M; --think=false),tws,,,
+,,Claude (Opus 5.5),yes,,,
+,,DeepSeek,,,,

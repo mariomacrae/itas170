@@ -1,0 +1,7 @@
+Mon 14 Sep  — clear, light wind. Started 08:00, stopped 11:00. Ferry wake
+              made the 09:15 block hard to count; may have double-counted
+              a kayak.
+Tue 15 Sep  — overcast. Started late (08:20). A rowing club went out at
+              09:00 in a group of eight — counted as eight paddle.
+Wed 16 Sep  — rain from 09:30. Left at 10:15. The last three blocks are
+              missing, not zero. Fix before using.
