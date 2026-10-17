@@ -3,7 +3,3 @@ secrets/
 .venv/
 node_modules/
 *.tmp
-git status
-git add -A
-git commit -m "Week 1 of ITAS170"
-git log --oneline
