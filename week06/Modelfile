@@ -1,0 +1,6 @@
+# The local model for week 6: the same small Qwen model, with a bigger
+# window. Agents send long instructions before your question, and Ollama on
+# a machine with no graphics card gives a model only 4,096 tokens unless
+# you ask for more. 65,536 is what Hermes Agent needs.
+FROM qwen3:4b-instruct
+PARAMETER num_ctx 65536
