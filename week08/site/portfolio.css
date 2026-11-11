@@ -1,0 +1,160 @@
+/* Palette contrast on paper
+paper ##4600D9 background
+ink ##CBFF00 body text 7.88:1
+accent ##FFE261 links, buttons 7.2:1
+muted ##E5E0F0 captions, borders 7.18:1
+surface ##0052B8 section backgrounds
+*/
+header {
+      background-color: #222;  /* the dark bar */
+      color: white;
+      padding: 25px 35px;
+      display: flex;
+      flex-direction: column;  /* phone: h1 above nav */
+      justify-content: space-between;
+      align-items: center;
+}
+header h1 {
+color:chartreuse;
+font-family: 'Limelight', serif;
+font-size: 50px;
+text-align: center;
+}
+.skip {
+position: absolute;
+left: -9999px;
+}
+.skip:focus {
+position: static;
+}
+.subtitle {
+  color:white;
+  margin: 0;
+  text-align: center; /* lines up with the centred heading */
+}
+.title-block h1 {
+  margin-bottom: 0;   /* remove the gap under the heading */
+}
+header nav {
+display: flex;
+flex-wrap: wrap;   /* links can drop to a second line on a narrow screen */
+text-align: center;
+gap: 1.5rem;
+justify-content: center; 
+}
+header nav a {
+color: white;
+text-decoration: none;
+padding: 0.3rem 0;
+transition: color 0.2s;
+ font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+}
+main section {
+flex: 1;
+}
+main aside {
+width: 18rem;
+}
+.under-text {
+  display: flex;
+  flex-direction: column; /* stacks children vertically */
+}
+table {
+border-collapse: collapse;
+}
+th, td {
+border: 0px solid #999;
+padding: 0.4rem 0.6rem;
+}
+nav a:hover,
+nav a:focus {
+color: chartreuse;
+text-decoration: underline;
+}
+section ul {
+display: flex;
+gap: 1rem;
+list-style: none;
+padding: 0;
+}
+section li {
+flex: 1;
+padding: 1rem;
+border: 1px solid #ccc;
+}
+#scene {
+  width: 100%;
+  aspect-ratio: 370 / 190; /* height follows width, same shape */
+  flex-shrink: 0;   /* stops flexbox from squashing the scene */
+}
+h2 {
+color: crimson;
+font-family: 'Jaro', serif;
+}
+p, li, a, tr{
+color: black;
+font-family: 'DM Sans', sans-serif
+}
+.flex-container {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
+  height: 15vh;           /* Gives the container a height (e.g., full screen) */
+}
+.projects {
+  display: flex;
+  flex-direction: column; /* phone: projects stacked */
+  gap: 1rem;
+}
+.project {
+  padding: 0.4rem 0.6rem;
+}
+.project h3 {
+  text-align: center;
+}
+.right-container {
+  display: flex;
+  flex-direction: column; /* phone: list above picture/scene */
+  align-items: center;
+  gap: 2rem;
+}
+
+.right-container ul {
+  flex: 1;
+}
+.right-container img {
+  width: 220px;
+}
+img {
+  max-width: 100%; /* no picture wider than the screen */
+  height: auto;
+}
+
+/* Wider screens: back to the side-by-side layout */
+@media (min-width: 768px) {
+  header {
+    flex-direction: row; /* h1 and nav side by side */
+  }
+  #scene {
+  flex: 1;       /* share the row with the hobbies list, half each */
+  min-width: 0;  /* let it shrink when the window narrows */
+}
+  .right-container {
+    flex-direction: row; /* list beside picture/scene */
+  }
+ 
+  .projects {
+    flex-direction: row; /* projects side by side */
+    width: 100%;
+    margin: 0 auto;
+  }
+  .project {
+    flex: 1;
+  }
+}
+ @media (min-width: 1200px) {
+  .projects {
+    width: 50%;
+  }
+}

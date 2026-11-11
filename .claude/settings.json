@@ -1,0 +1,1 @@
+{  "permissions": {    "defaultMode": "manual",    "allow": ["Bash(git status *)", "Bash(git diff *)"],    "deny": ["Read(./.env)", "Read(./secrets/**)", "Bash(git push *)"]  }}

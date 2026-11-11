@@ -2,6 +2,12 @@
 4,P4 find the bug,qwen3:8b (local; Q4_K_M; --think=false),yes,ran the fixed script,11 minutes,
 ,,Claude (Opus 5.5),yes,ran script,11seconds,
 ,,DeepSeek,yes,ran script,5 seconds,
-5,Name step in prompt most likely to go wrong.,qwen3:8b (local; Q4_K_M; --think=false),tws,,,
+5,Name step in prompt most likely to go wrong.,qwen3:8b (local; Q4_K_M; --think=false),yes,,,
 ,,Claude (Opus 5.5),yes,,,
 ,,DeepSeek,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+8,Part 3- generate a dockerfile.model,Claude (Opus 5.5),yes,checked site,3 seconds,"image size= model’s is slightly bigger.
+Hosted the site perfectly, nothing was added that I didn’t ask for."

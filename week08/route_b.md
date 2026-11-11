@@ -1,0 +1,1 @@
+Pinning the digest will make for reproducible builds, easier debugs, and supply chain safety. However, in the long run the security will degrade since a tag always gets new images but not pinned digests. It will also create more maintenance work for me and could possible disappear when cleaned up by the registry.

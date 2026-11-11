@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mario Macrae Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Jaro:opsz@6..72&family=Limelight&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="portfolio.css">
+<header>
+<div class="title-block">
+  <h1>Mario Macrae Web Portfolio</h1>
+<p class="subtitle">First-year student at Vancouver Island University studying programming and web development.</p>
+</div>
+<nav>
+<a href="#about-me">About Me</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+<div class="flex-container">
+<img src="images/marioavatar.png" alt="An avatar I made of myself with brown hair and glasses.." class="flex-container">
+</div>
+<h2 id="about-me">About Me</h2>
+<p>I am a first-year student in the ITAS-BITS (Business Information Technology Services) program at VIU. I am passionate about computers and the many different possibilities they have to offer. 
+My experience with computers dates back to when I got a VTech laptop when I was two. Since then, I have gained experience with all sorts of hardware and software and have yet to grow tired of it.</p>
+<h2>Skills I Am Currently Learning In School</h2>
+<div class="right-container">
+<ul>
+    <li>Creating and styling websites with HTML, CSS, and ThreeJS</li>
+    <li>Writing and fixing Python scripts</li>
+    <li>Disassembly, troubleshooting, and identification of computer hardware</li>
+    <li>Working with AI agents</li>
+</ul>
+<img src="images/project-illustration-5.svg" alt="A Bauhaus-style image of a person coding at a computer" width="600" height="400">
+</div>
+<h2>My hobbies</h2>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from 'three';
+
+// ============================================================
+//  SETTINGS — everything you might want to tweak lives here
+// ============================================================
+const CONFIG = {
+  colors: {
+    // Background colour
+    background: 0x4600d9,
+    // Main object colour (the trumpet)
+    main: 0xcbff00,
+    // Accent colour (music notes, valve buttons, bell rim, sparkles)
+    accent: 0xffe261,
+    // Light colour (back/rim light and the underside glow)
+    light: 0x0052b8,
+  },
+  camera: {
+    // Starting camera position (x, y, z)
+    position: [0.8, 1.2, 8.0],
+    // Point the camera looks at and orbits around (x, y, z)
+    target: [0.6, 0.1, 0],
+    // Field of view in degrees (smaller = more zoomed in)
+    fov: 40,
+  },
+  controls: {
+    // How fast dragging spins the view
+    rotateSpeed: 1.0,
+    // How fast the mouse wheel / pinch zooms
+    zoomSpeed: 1.0,
+    // How fast right-drag / shift-drag / two-finger drag pans
+    panSpeed: 1.0,
+    // Closest the camera can get to the target
+    minDistance: 2.5,
+    // Farthest the camera can get from the target
+    maxDistance: 16,
+    // How quickly the camera catches up with your drag (higher = tighter, lower = silkier)
+    followSpeed: 11,
+    // How quickly a flick's glide slows down after you let go (lower = longer glide)
+    friction: 2.5,
+    // Seconds of no interaction before the view starts auto-spinning
+    autoRotateDelay: 3,
+    // Seconds the auto-spin takes to ease up to full speed
+    autoRotateEase: 2,
+    // Auto-spin speed in radians per second (0 = off)
+    autoRotateSpeed: 0.35,
+  },
+  trumpet: {
+    // Overall size of the trumpet
+    scale: 1.0,
+    // Tube thickness (1 = thin, 2 = twice as thick)
+    thickness: 1.7,
+        // Height of the mouthpiece pipe (higher = closer to the bell pipe; keep at -0.05 or below)
+    leadpipeY: -0.05,
+        // Mouthpiece size (1 = slim, 1.5 = chunky)
+    mouthpieceSize: 1.4,
+    // Left/right position of the trumpet (more negative = further left)
+    offsetX: -1.1,
+    // Beats per minute — drives the bouncing, valves and note bursts
+    bpm: 128,
+    // How far the trumpet tilts side to side with the beat (radians)
+    sway: 0.12,
+    // How high the trumpet hops on each beat
+    bounce: 0.12,
+    // How much the bell swells on each beat (0.1 = 10%)
+    bellPulse: 0.12,
+    // How softly each beat ramps in (0.05 = punchy, 0.3 = very soft)
+    beatSoftness: 0.12,
+    // How far valve buttons press down on each beat
+    valveTravel: 0.1,
+    // Self-glow of the trumpet so it stays vivid (0 = none)
+    glow: 0.25,
+  },
+  click: {
+    // Full barrel rolls the trumpet does per click (0 = none)
+    rollTurns: 1,
+    // Speed of the barrel roll
+    rollSpeed: 7,
+    // Bounciness at the end of the roll (1 = no overshoot, 0.4 = big wobble)
+    rollSettle: 0.6,
+    // How hard the trumpet recoils backwards
+    recoil: 0.35,
+    // How hard the bell jiggles
+    bellJiggle: 6,
+    // Number of shockwave rings blasted from the bell
+    rings: 3,
+    // How big the rings grow (times the bell size)
+    ringGrowth: 4,
+    // How far the rings travel forward
+    ringTravel: 2.2,
+    // Seconds each ring lasts
+    ringLife: 0.9,
+    // Seconds between rings
+    ringGap: 0.1,
+    // Notes in the spiral burst
+    burstNotes: 16,
+    // Seconds the spiral burst takes to stream out
+    burstTime: 0.5,
+    // Speed of burst notes compared with normal notes
+    burstSpeed: 1.6,
+    // Seconds the valves flutter after a click
+    flutterTime: 0.7,
+    // How strongly the sparkles flash outward
+    sparkleFlash: 5,
+  },
+  notes: {
+    // Maximum notes on screen at once
+    max: 70,
+    // Size of each note
+    size: 1.0,
+    // Notes released on every beat
+    perBeat: 2,
+    // Extra notes released per second between beats
+    perSecond: 2,
+    // Forward speed of the notes leaving the bell
+    speed: 1.5,
+    // How widely the notes fan out from the bell
+    spread: 0.7,
+    // Upward float applied to notes over time
+    rise: 0.6,
+    // How much notes wiggle up and down as they fly
+    wiggle: 0.12,
+    // How long each note lives, in seconds
+    life: 2.8,
+  },
+  sparkles: {
+    // Number of floating sparkles in the background
+    count: 160,
+    // Size of each sparkle
+    size: 0.06,
+    // How fast the sparkle field drifts
+    speed: 0.05,
+  },
+  // Fog start distance (blends far things into the background)
+  fogNear: 9,
+  // Fog end distance
+  fogFar: 22,
+};
+
+// ============================================================
+//  SETUP — draws into the existing <div id="scene">
+// ============================================================
+const container = document.getElementById('scene');
+const W = container.clientWidth || 330;
+const H = container.clientHeight || 255;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(W, H);
+const canvas = renderer.domElement;
+canvas.style.display = 'block';
+canvas.style.touchAction = 'none';
+canvas.style.cursor = 'grab';
+canvas.setAttribute('role', 'img');
+canvas.setAttribute('aria-label', 'A bouncing trumpet blowing music notes. Drag to orbit, scroll or pinch to zoom, right-drag to pan, click for a fanfare, double-click to reset.');
+container.appendChild(canvas);
+
+const C = CONFIG.colors;
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(C.background);
+scene.fog = new THREE.Fog(C.background, CONFIG.fogNear, CONFIG.fogFar);
+
+const camera = new THREE.PerspectiveCamera(CONFIG.camera.fov, W / H, 0.1, 100);
+// Keep the scene the same size as its box when the page is resized
+new ResizeObserver(() => {
+  const w = container.clientWidth, h = container.clientHeight;
+  if (!w || !h) return;
+  renderer.setSize(w, h);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}).observe(container);
+// Lights (palette colours only)
+// Sky/ground light: accent from above, light colour from below (last number = brightness)
+scene.add(new THREE.HemisphereLight(C.accent, C.light, 1.4));
+// Main light colour and brightness
+const keyLight = new THREE.DirectionalLight(C.accent, 1.8);
+keyLight.position.set(3, 5, 4);
+scene.add(keyLight);
+// Back light colour and brightness
+const rimLight = new THREE.PointLight(C.light, 30, 20, 2);
+rimLight.position.set(-3, 1.5, -3);
+scene.add(rimLight);
+
+// Materials
+const brass = new THREE.MeshStandardMaterial({
+  color: C.main, emissive: C.main, emissiveIntensity: CONFIG.trumpet.glow,
+  metalness: 0.35, roughness: 0.3, side: THREE.DoubleSide,
+});
+const trim = new THREE.MeshStandardMaterial({
+  color: C.accent, emissive: C.accent, emissiveIntensity: 0.3,
+  metalness: 0.2, roughness: 0.4,
+});
+
+// Springy motion helper: moves s.x toward target with velocity s.v
+function spring(s, target, omega, zeta, dt) {
+  const n = Math.max(1, Math.ceil(dt * 240));
+  const h = dt / n;
+  for (let i = 0; i < n; i++) {
+    s.v += (-2 * zeta * omega * s.v - omega * omega * (s.x - target)) * h;
+    s.x += s.v * h;
+  }
+}
+const smooth = x => x * x * (3 - 2 * x);
+
+// ============================================================
+//  TRUMPET
+// ============================================================
+// rig = dancing to the beat, trumpet = click tricks (roll, recoil)
+const rig = new THREE.Group();
+rig.scale.setScalar(CONFIG.trumpet.scale);
+rig.position.x = CONFIG.trumpet.offsetX;
+scene.add(rig);
+const trumpet = new THREE.Group();
+rig.add(trumpet);
+
+const TH = CONFIG.trumpet.thickness;
+const TUBE_R = 0.06 * TH;
+// Valves and mouthpiece grow a bit slower than the tubes so they don't merge
+const PART = 1 + (TH - 1) * 0.5;
+
+const v = (x, y, z = 0) => new THREE.Vector3(x, y, z);
+
+const LP = CONFIG.trumpet.leadpipeY;
+// Main tubing: mouthpiece pipe -> front loop -> back loop -> bell pipe
+const tubePath = new THREE.CatmullRomCurve3([
+  v(-2.0, LP), v(-1.2, LP), v(-0.4, LP), v(0.4, LP),
+  v(0.85, LP - 0.05), v(1.05, (LP - 0.72) / 2), v(0.85, -0.72), v(0.4, -0.78, -0.05),
+  v(-0.4, -0.78, -0.12), v(-1.0, -0.7, -0.2), v(-1.22, -0.3, -0.22),
+  v(-1.0, 0.12, -0.12), v(-0.6, 0.2), v(0.2, 0.2), v(0.9, 0.2),
+]);
+trumpet.add(new THREE.Mesh(new THREE.TubeGeometry(tubePath, 260, TUBE_R, 18), brass));
+
+// Bell length
+const BELL_LEN = 1.5;
+// Bell opening radius
+const BELL_R = 0.72;
+const bellPts = [];
+for (let i = 0; i <= 32; i++) {
+  const t = i / 32;
+  bellPts.push(new THREE.Vector2(TUBE_R + (BELL_R - TUBE_R) * Math.pow(t, 3.2), t * BELL_LEN));
+}
+const bellGroup = new THREE.Group();
+bellGroup.position.set(0.9, 0.2, 0);
+trumpet.add(bellGroup);
+const bell = new THREE.Mesh(new THREE.LatheGeometry(bellPts, 64), brass);
+bell.rotation.z = -Math.PI / 2;
+bellGroup.add(bell);
+const rim = new THREE.Mesh(new THREE.TorusGeometry(BELL_R, 0.035 * TH, 12, 64), trim);
+rim.rotation.y = Math.PI / 2;
+rim.position.x = BELL_LEN;
+bellGroup.add(rim);
+
+// Mouthpiece: a solid cup with real wall thickness (outside, rim, then inside)
+const mpPts = [
+  [0.05, 0], [0.055, 0.2], [0.08, 0.3], [0.14, 0.38], [0.155, 0.42], [0.15, 0.445],
+  [0.12, 0.445], [0.09, 0.4], [0.05, 0.35], [0.03, 0.3], [0.03, 0], [0.05, 0],
+].map(([r, y]) => new THREE.Vector2(r, y));
+const mouthpiece = new THREE.Mesh(new THREE.LatheGeometry(mpPts, 40), trim);
+mouthpiece.rotation.z = Math.PI / 2;
+// Mouthpiece width (bigger = chunkier cup)
+const MP_W = PART * CONFIG.trumpet.mouthpieceSize;
+mouthpiece.scale.set(MP_W, CONFIG.trumpet.mouthpieceSize, MP_W);
+mouthpiece.position.set(-2.0, LP, 0);
+trumpet.add(mouthpiece);
+
+// Valve casing radius
+const VALVE_R = 0.11 * PART;
+// Valves with buttons
+const buttons = [];
+[-0.36, 0, 0.36].forEach(x => {
+  const casing = new THREE.Mesh(new THREE.CylinderGeometry(VALVE_R, VALVE_R, 1.2, 24), brass);
+  casing.position.set(x, -0.2, 0);
+  trumpet.add(casing);
+  const capTop = new THREE.Mesh(new THREE.CylinderGeometry(VALVE_R + 0.02, VALVE_R + 0.02, 0.07, 24), brass);
+  capTop.position.set(x, 0.42, 0);
+  trumpet.add(capTop);
+  const capBot = capTop.clone();
+  capBot.position.y = -0.82;
+  trumpet.add(capBot);
+  const btn = new THREE.Group();
+  btn.position.set(x, 0.45, 0);
+  const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.025 * PART, 0.025 * PART, 0.22, 12), trim);
+  stem.position.y = 0.11;
+  const pad = new THREE.Mesh(new THREE.CylinderGeometry(0.09 * PART, 0.09 * PART, 0.05, 24), trim);
+  pad.position.y = 0.24;
+  btn.add(stem, pad);
+  btn.userData.press = 0;
+  trumpet.add(btn);
+  buttons.push(btn);
+});
+
+// Bell mouth position and direction in the world, reused by notes and rings
+const _mouth = new THREE.Vector3();
+const _axis = new THREE.Vector3();
+const _u = new THREE.Vector3();
+const _w = new THREE.Vector3();
+const _q = new THREE.Quaternion();
+const WORLD_UP = new THREE.Vector3(0, 1, 0);
+function readBell() {
+  bellGroup.localToWorld(_mouth.set(BELL_LEN, 0, 0));
+  _axis.set(1, 0, 0).applyQuaternion(rig.getWorldQuaternion(_q));
+  _u.crossVectors(_axis, WORLD_UP).normalize();
+  _w.crossVectors(_axis, _u);
+}
+
+// ============================================================
+//  MUSIC NOTES
+// ============================================================
+function head(x, y) {
+  const s = new THREE.Shape();
+  s.absellipse(x, y, 0.13, 0.09, 0, Math.PI * 2, false, 0.4);
+  return s;
+}
+function rect(x0, y0, x1, y1) {
+  const s = new THREE.Shape();
+  s.moveTo(x0, y0); s.lineTo(x1, y0); s.lineTo(x1, y1); s.lineTo(x0, y1); s.closePath();
+  return s;
+}
+// Note thickness
+const extrude = { depth: 0.06, bevelEnabled: false };
+
+const flag = new THREE.Shape();
+flag.moveTo(0.1, 0.55); flag.lineTo(0.135, 0.55);
+flag.quadraticCurveTo(0.17, 0.38, 0.33, 0.28);
+flag.quadraticCurveTo(0.22, 0.33, 0.135, 0.4);
+flag.lineTo(0.1, 0.4); flag.closePath();
+const eighthGeo = new THREE.ExtrudeGeometry([head(0, 0), rect(0.1, 0.02, 0.135, 0.55), flag], extrude);
+eighthGeo.center();
+
+const beam = new THREE.Shape();
+beam.moveTo(0.1, 0.47); beam.lineTo(0.515, 0.53); beam.lineTo(0.515, 0.61); beam.lineTo(0.1, 0.55); beam.closePath();
+const beamedGeo = new THREE.ExtrudeGeometry(
+  [head(0, 0), head(0.38, 0.06), rect(0.1, 0.02, 0.135, 0.55), rect(0.48, 0.08, 0.515, 0.61), beam], extrude);
+beamedGeo.center();
+
+// Note colour and glow
+const noteMat = new THREE.MeshStandardMaterial({
+  color: C.accent, emissive: C.accent, emissiveIntensity: 0.45,
+  roughness: 0.4, transparent: true, side: THREE.DoubleSide,
+});
+
+const notes = [];
+for (let i = 0; i < CONFIG.notes.max; i++) {
+  const mesh = new THREE.Mesh(i % 3 === 0 ? beamedGeo : eighthGeo, noteMat.clone());
+  mesh.visible = false;
+  scene.add(mesh);
+  notes.push({ mesh, base: new THREE.Vector3(), vel: new THREE.Vector3(), age: 0, life: 1, phase: 0, spin: 0, alive: false });
+}
+
+// burstIndex >= 0 places the note on a spiral for the click fanfare
+function spawnNote(burstIndex = -1) {
+  const n = notes.find(n => !n.alive);
+  if (!n) return;
+  readBell();
+  const burst = burstIndex >= 0;
+  const a = burst ? burstIndex * 2.39996 : Math.random() * Math.PI * 2;
+  const r = burst ? BELL_R * 0.75 : Math.sqrt(Math.random()) * BELL_R * 0.7;
+  const radial = _u.clone().multiplyScalar(Math.cos(a)).addScaledVector(_w, Math.sin(a));
+  n.base.copy(_mouth).addScaledVector(radial, r);
+  const speed = CONFIG.notes.speed * (burst ? CONFIG.click.burstSpeed : 0.7 + Math.random() * 0.6);
+  n.vel.copy(_axis).multiplyScalar(speed).addScaledVector(radial, r * CONFIG.notes.spread * 2);
+  // Burst notes get a sideways swirl so the spiral fans out
+  if (burst) n.vel.addScaledVector(_u.clone().multiplyScalar(-Math.sin(a)).addScaledVector(_w, Math.cos(a)), 0.9);
+  n.age = 0;
+  n.life = CONFIG.notes.life * (0.8 + Math.random() * 0.4);
+  n.phase = Math.random() * Math.PI * 2;
+  // Note spin speed
+  n.spin = (Math.random() - 0.5) * (burst ? 8 : 3);
+  n.alive = true;
+  n.mesh.rotation.set(0, Math.random() * Math.PI, 0);
+  n.mesh.scale.setScalar(0.001);
+  n.mesh.material.opacity = 1;
+  n.mesh.visible = true;
+}
+
+function updateNotes(dt) {
+  for (const n of notes) {
+    if (!n.alive) continue;
+    n.age += dt;
+    const t = n.age / n.life;
+    if (t >= 1) { n.alive = false; n.mesh.visible = false; continue; }
+    n.vel.y += CONFIG.notes.rise * dt;
+    n.base.addScaledVector(n.vel, dt);
+    n.mesh.position.copy(n.base);
+    n.mesh.position.y += Math.sin(n.age * 7 + n.phase) * CONFIG.notes.wiggle;
+    // Pop in with a soft overshoot, ease out at the end
+    const k = Math.min(1, t * 5);
+    const pop = 1 + 2.2 * Math.pow(k - 1, 3) + 1.2 * Math.pow(k - 1, 2);
+    n.mesh.scale.setScalar(Math.max(0.001, pop * CONFIG.notes.size));
+    n.mesh.material.opacity = t > 0.65 ? 1 - smooth((t - 0.65) / 0.35) : 1;
+    n.mesh.rotation.y += n.spin * dt;
+    n.mesh.rotation.z = Math.sin(n.age * 4.5 + n.phase) * 0.4;
+  }
+}
+
+// ============================================================
+//  SHOCKWAVE RINGS (click fanfare)
+// ============================================================
+// Ring thickness
+const ringGeo = new THREE.TorusGeometry(1, 0.035, 8, 80);
+const ringTurn = new THREE.Quaternion().setFromAxisAngle(WORLD_UP, Math.PI / 2);
+const rings = [];
+for (let i = 0; i < 8; i++) {
+  // Rings alternate between the accent and main colours
+  const mat = new THREE.MeshBasicMaterial({ color: i % 2 ? C.main : C.accent, transparent: true, depthWrite: false });
+  const mesh = new THREE.Mesh(ringGeo, mat);
+  mesh.visible = false;
+  scene.add(mesh);
+  rings.push({ mesh, start: new THREE.Vector3(), dir: new THREE.Vector3(), age: 0, alive: false });
+}
+function spawnRing() {
+  const r = rings.find(r => !r.alive);
+  if (!r) return;
+  readBell();
+  r.start.copy(_mouth);
+  r.dir.copy(_axis);
+  r.mesh.quaternion.copy(rig.getWorldQuaternion(_q)).multiply(ringTurn);
+  r.age = 0;
+  r.alive = true;
+  r.mesh.visible = true;
+}
+function updateRings(dt) {
+  const CL = CONFIG.click;
+  for (const r of rings) {
+    if (!r.alive) continue;
+    r.age += dt;
+    const t = r.age / CL.ringLife;
+    if (t >= 1) { r.alive = false; r.mesh.visible = false; continue; }
+    const out = 1 - Math.pow(1 - t, 3);
+    const s = BELL_R * (1 + (CL.ringGrowth - 1) * out);
+    r.mesh.scale.set(s, s, s);
+    r.mesh.position.copy(r.start).addScaledVector(r.dir, CL.ringTravel * out);
+    r.mesh.material.opacity = Math.pow(1 - t, 1.5);
+  }
+}
+
+// ============================================================
+//  SPARKLES
+// ============================================================
+const sparkPos = new Float32Array(CONFIG.sparkles.count * 3);
+for (let i = 0; i < CONFIG.sparkles.count; i++) {
+  sparkPos[i * 3] = (Math.random() - 0.5) * 16;
+  sparkPos[i * 3 + 1] = (Math.random() - 0.5) * 10;
+  sparkPos[i * 3 + 2] = (Math.random() - 0.5) * 12;
+}
+const sparkGeo = new THREE.BufferGeometry();
+sparkGeo.setAttribute('position', new THREE.BufferAttribute(sparkPos, 3));
+// Sparkle colour and transparency
+const sparkMat = new THREE.PointsMaterial({ color: C.accent, size: CONFIG.sparkles.size, transparent: true, opacity: 0.75 });
+const sparkles = new THREE.Points(sparkGeo, sparkMat);
+scene.add(sparkles);
+
+// ============================================================
+//  CLICK FANFARE
+// ============================================================
+const roll = { x: 0, v: 0 };
+let rollTarget = 0;
+const recoil = { x: 0, v: 0 };
+const jiggle = { x: 0, v: 0 };
+const flash = { x: 0, v: 0 };
+let ringTimers = [];
+let burstQueue = 0;
+let burstAcc = 0;
+let burstIndex = 0;
+let flutter = 0;
+
+function fanfare() {
+  const CL = CONFIG.click;
+  rollTarget += Math.PI * 2 * CL.rollTurns;
+  recoil.v -= CL.recoil * 12;
+  jiggle.v += CL.bellJiggle;
+  flash.v += CL.sparkleFlash;
+  for (let i = 0; i < CL.rings; i++) ringTimers.push(i * CL.ringGap);
+  burstQueue += CL.burstNotes;
+  flutter = CL.flutterTime;
+}
+
+// ============================================================
+//  ORBIT CONTROLS (built in, no extra libraries)
+//  drag = orbit (flick it to glide) · wheel/pinch = zoom ·
+//  right-drag, shift-drag or two fingers = pan ·
+//  click/tap = fanfare · double-click = reset
+// ============================================================
+const CC = CONFIG.controls;
+const homeTarget = new THREE.Vector3(...CONFIG.camera.target);
+const homeSph = new THREE.Spherical().setFromVector3(new THREE.Vector3(...CONFIG.camera.position).sub(homeTarget));
+// Where the camera is heading
+const goal = { target: homeTarget.clone(), sph: homeSph.clone() };
+// Where the camera actually is, each value with its own velocity
+const cam = {
+  theta: { x: homeSph.theta, v: 0 }, phi: { x: homeSph.phi, v: 0 }, radius: { x: homeSph.radius, v: 0 },
+  tx: { x: homeTarget.x, v: 0 }, ty: { x: homeTarget.y, v: 0 }, tz: { x: homeTarget.z, v: 0 },
+};
+// Glide velocity after a flick (radians/sec for orbit, pixels/sec for pan)
+const glide = { theta: 0, phi: 0, px: 0, py: 0 };
+// Pointer movement collected between frames
+const drag = { dx: 0, dy: 0 };
+let lastInteract = -Infinity;
+let lastMoveT = 0;
+
+const pointers = new Map();
+let mode = null;
+let pinchDist = 0;
+let downInfo = null;
+const _right = new THREE.Vector3();
+const _up = new THREE.Vector3();
+const _target = new THREE.Vector3();
+
+function touch() { lastInteract = performance.now(); }
+function stopGlide() { glide.theta = glide.phi = glide.px = glide.py = 0; }
+function clampGoal() {
+  const lo = 0.05, hi = Math.PI - 0.05;
+  if (goal.sph.phi < lo || goal.sph.phi > hi) glide.phi = 0;
+  goal.sph.phi = Math.min(hi, Math.max(lo, goal.sph.phi));
+  goal.sph.radius = Math.min(CC.maxDistance, Math.max(CC.minDistance, goal.sph.radius));
+}
+function pan(dx, dy) {
+  const k = 0.0025 * CC.panSpeed * cam.radius.x;
+  _right.setFromMatrixColumn(camera.matrix, 0);
+  _up.setFromMatrixColumn(camera.matrix, 1);
+  goal.target.addScaledVector(_right, -dx * k).addScaledVector(_up, dy * k);
+}
+function zoom(factor) {
+  goal.sph.radius *= factor;
+  clampGoal();
+}
+function pinchState() {
+  const [a, b] = [...pointers.values()];
+  return { d: Math.hypot(a.x - b.x, a.y - b.y), x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+}
+
+canvas.addEventListener('pointerdown', e => {
+  canvas.setPointerCapture(e.pointerId);
+  pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  touch();
+  stopGlide();
+  drag.dx = drag.dy = 0;
+  lastMoveT = performance.now();
+  if (pointers.size === 1) {
+    mode = (e.button === 2 || e.shiftKey) ? 'pan' : 'rotate';
+    downInfo = { x: e.clientX, y: e.clientY, t: performance.now() };
+  } else if (pointers.size === 2) {
+    mode = 'pinch';
+    pinchDist = pinchState().d;
+    downInfo = null;
+  }
+  canvas.style.cursor = 'grabbing';
+});
+canvas.addEventListener('pointermove', e => {
+  const p = pointers.get(e.pointerId);
+  if (!p) return;
+  touch();
+  if (mode === 'pinch' && pointers.size === 2) {
+    const before = pinchState();
+    p.x = e.clientX; p.y = e.clientY;
+    const after = pinchState();
+    if (after.d > 0 && pinchDist > 0) zoom(Math.pow(pinchDist / after.d, CC.zoomSpeed));
+    pinchDist = after.d;
+    pan(after.x - before.x, after.y - before.y);
+    return;
+  }
+  drag.dx += e.clientX - p.x;
+  drag.dy += e.clientY - p.y;
+  p.x = e.clientX; p.y = e.clientY;
+  lastMoveT = performance.now();
+});
+function endPointer(e) {
+  if (!pointers.has(e.pointerId)) return;
+  pointers.delete(e.pointerId);
+  touch();
+  // Held still before letting go = no glide
+  if (performance.now() - lastMoveT > 90 || mode === 'pinch') stopGlide();
+  if (downInfo && pointers.size === 0) {
+    const moved = Math.hypot(e.clientX - downInfo.x, e.clientY - downInfo.y);
+    if (moved < 6 && performance.now() - downInfo.t < 350) {
+      stopGlide();
+      fanfare();
+    }
+  }
+  downInfo = null;
+  drag.dx = drag.dy = 0;
+  if (pointers.size === 1) {
+    mode = 'rotate';
+    stopGlide();
+    lastMoveT = performance.now();
+  } else if (pointers.size === 0) {
+    mode = null;
+    canvas.style.cursor = 'grab';
+  }
+}
+canvas.addEventListener('pointerup', endPointer);
+canvas.addEventListener('pointercancel', endPointer);
+canvas.addEventListener('contextmenu', e => e.preventDefault());
+canvas.addEventListener('wheel', e => {
+  e.preventDefault();
+  touch();
+  // Normalise line/page scrolling so every mouse and trackpad feels alike
+  const dy = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaMode === 2 ? e.deltaY * 400 : e.deltaY;
+  zoom(Math.exp(Math.max(-100, Math.min(100, dy)) * 0.0015 * CC.zoomSpeed));
+}, { passive: false });
+canvas.addEventListener('dblclick', () => {
+  touch();
+  stopGlide();
+  goal.target.copy(homeTarget);
+  goal.sph.copy(homeSph);
+  // Take the short way round when resetting
+  const turn = Math.PI * 2;
+  goal.sph.theta += Math.round((cam.theta.x - goal.sph.theta) / turn) * turn;
+});
+
+function updateCamera(dt) {
+  if (pointers.size > 0 && dt > 0) {
+    // Apply this frame's drag, and track its speed for the glide
+    const blend = 1 - Math.exp(-dt / 0.05);
+    if (mode === 'rotate') {
+      const dTheta = -drag.dx * 0.008 * CC.rotateSpeed;
+      const dPhi = -drag.dy * 0.008 * CC.rotateSpeed;
+      goal.sph.theta += dTheta;
+      goal.sph.phi += dPhi;
+      clampGoal();
+      glide.theta += (dTheta / dt - glide.theta) * blend;
+      glide.phi += (dPhi / dt - glide.phi) * blend;
+    } else if (mode === 'pan') {
+      pan(drag.dx, drag.dy);
+      glide.px += (drag.dx / dt - glide.px) * blend;
+      glide.py += (drag.dy / dt - glide.py) * blend;
+    }
+    drag.dx = drag.dy = 0;
+  } else {
+    // Glide after a flick, slowing down smoothly
+    goal.sph.theta += glide.theta * dt;
+    goal.sph.phi += glide.phi * dt;
+    clampGoal();
+    if (glide.px || glide.py) pan(glide.px * dt, glide.py * dt);
+    const decay = Math.exp(-CC.friction * dt);
+    glide.theta *= decay; glide.phi *= decay; glide.px *= decay; glide.py *= decay;
+    // Auto-spin eases in after a pause
+    const idle = (performance.now() - lastInteract) / 1000 - CC.autoRotateDelay;
+    if (idle > 0) goal.sph.theta += CC.autoRotateSpeed * smooth(Math.min(1, idle / CC.autoRotateEase)) * dt;
+  }
+  // The camera springs toward its goal, so starts and stops are always eased
+  const w = CC.followSpeed;
+  spring(cam.theta, goal.sph.theta, w, 1, dt);
+  spring(cam.phi, goal.sph.phi, w, 1, dt);
+  spring(cam.radius, goal.sph.radius, w, 1, dt);
+  spring(cam.tx, goal.target.x, w, 1, dt);
+  spring(cam.ty, goal.target.y, w, 1, dt);
+  spring(cam.tz, goal.target.z, w, 1, dt);
+  _target.set(cam.tx.x, cam.ty.x, cam.tz.x);
+  camera.position.setFromSphericalCoords(cam.radius.x, cam.phi.x, cam.theta.x).add(_target);
+  camera.lookAt(_target);
+  camera.updateMatrixWorld();
+}
+
+// ============================================================
+//  ANIMATION LOOP
+// ============================================================
+const clock = new THREE.Clock();
+let elapsed = 0;
+let lastBeat = -1;
+let trickle = 0;
+// Order in which the three valves get pressed (0 = first valve)
+const valveOrder = [0, 2, 1, 0, 1, 2];
+
+// Smooth beat shape: eases in, then falls away to exactly zero by the next beat
+function beatEnvelope(frac) {
+  const a = CONFIG.trumpet.beatSoftness;
+  if (frac < a) return smooth(frac / a);
+  return Math.pow(1 - (frac - a) / (1 - a), 2.5);
+}
+
+function frame() {
+  const dt = Math.min(clock.getDelta(), 1 / 30);
+  elapsed += dt;
+  const T = CONFIG.trumpet;
+  const CL = CONFIG.click;
+
+  const beatPos = elapsed * T.bpm / 60;
+  const beat = Math.floor(beatPos);
+  const pulse = beatEnvelope(beatPos - beat);
+
+  // Click tricks: roll, recoil, bell jiggle, sparkle flash
+  spring(roll, rollTarget, CL.rollSpeed, CL.rollSettle, dt);
+  spring(recoil, 0, 14, 0.35, dt);
+  spring(jiggle, 0, 18, 0.25, dt);
+  spring(flash, 0, 6, 0.4, dt);
+  trumpet.rotation.x = roll.x;
+  trumpet.position.x = recoil.x;
+
+  // Trumpet dance
+  rig.rotation.z = Math.sin(beatPos * Math.PI) * T.sway;
+  // Slow left/right turn of the trumpet (speed, then amount)
+  rig.rotation.y = Math.sin(elapsed * 0.8) * 0.2;
+  rig.position.y = (0.5 - 0.5 * Math.cos(beatPos * Math.PI * 2)) * T.bounce;
+  const swell = Math.max(-0.3, T.bellPulse * pulse + jiggle.x);
+  bellGroup.scale.set(1 + swell * 0.3, 1 + swell, 1 + swell);
+
+  // Valves press in sequence, or flutter wildly after a click
+  flutter = Math.max(0, flutter - dt);
+  const pressed = valveOrder[beat % valveOrder.length];
+  const ease = 1 - Math.exp(-25 * dt);
+  buttons.forEach((b, i) => {
+    let target = i === pressed ? T.valveTravel * pulse : 0;
+    if (flutter > 0) target = T.valveTravel * (0.5 + 0.5 * Math.sin(elapsed * 38 + i * 2.1)) * Math.min(1, flutter * 4);
+    b.userData.press += (target - b.userData.press) * ease;
+    b.position.y = 0.45 - b.userData.press;
+  });
+
+  // Back light throb: resting brightness + extra on each beat + extra on click
+  rimLight.intensity = 30 + 40 * pulse + 80 * Math.min(1, Math.abs(flash.x));
+
+  // Release notes
+  if (beat !== lastBeat) {
+    lastBeat = beat;
+    for (let i = 0; i < CONFIG.notes.perBeat; i++) spawnNote();
+  }
+  trickle += CONFIG.notes.perSecond * dt;
+  while (trickle >= 1) { trickle -= 1; spawnNote(); }
+  // Spiral burst streams out over a short moment
+  if (burstQueue > 0) {
+    burstAcc += CL.burstNotes / CL.burstTime * dt;
+    while (burstAcc >= 1 && burstQueue > 0) { burstAcc -= 1; burstQueue -= 1; spawnNote(burstIndex++); }
+  } else {
+    burstAcc = 0;
+  }
+  // Staggered shockwave rings
+  ringTimers = ringTimers.filter(t => t - dt > 0 ? true : (spawnRing(), false)).map(t => t - dt);
+  updateNotes(dt);
+  updateRings(dt);
+
+  // Sparkles drift, twinkle and flash outward on click
+  sparkles.rotation.y += CONFIG.sparkles.speed * dt;
+  sparkles.scale.setScalar(1 + 0.25 * flash.x);
+  sparkMat.size = CONFIG.sparkles.size * (1 + 0.5 * pulse + 0.6 * Math.min(1, Math.max(0, flash.x)));
+
+  updateCamera(dt);
+  renderer.render(scene, camera);
+}
+
+// Only animate while the scene is on screen and the tab is visible
+let onScreen = true;
+function setRunning() {
+  const run = onScreen && !document.hidden;
+  if (run) clock.getDelta();
+  renderer.setAnimationLoop(run ? frame : null);
+}
+new IntersectionObserver(entries => {
+  onScreen = entries[0].isIntersecting;
+  setRunning();
+}).observe(container);
+document.addEventListener('visibilitychange', setRunning);
+setRunning();
+</script>
+<div class="right-container">
+<ul>
+<li>Running</li>
+<li>Skiing (cross-country and downhill)</li>
+<li>Media design (digital art, video editing)
+<li>Multi-instrumentalist (I play the trumpet, trombone, piano, drums) </li>
+<li>Collecting physical media (books, DVDs, vinyl/CDs)</li>
+</ul>
+<div id="scene"></div>
+</div>
+<h2 id="projects">Projects</h2>
+
+<div class="projects">
+<div class="project">
+<h3><a href="https://www.schoolofrock.com/resources/guitar/guitar-chords-for-beginners">Learn to play the guitar</a></h3>
+<p>When I was younger, I took a few guitar lessons, but never went that far with them. I kind of want to pick up where I left off now that I'm more musically inclined. When I pick up a guitar, I can play a few chords, but I'd like to refine my technique.</p>
+</div>
+<div class="project">
+<h3><a href="https://www.hp.com/us-en/tech-takes/gaming/how-to/how-to-build-a-gaming-computer.html">Build my own PC</a></h3>
+<p>I really like taking apart computers as well as making things. I want to combine those interests and try to assemble my own computer. I think it would be a fun challenge for me.</p>
+</div>
+<div class="project">
+<h3><a href="https://www.viu.ca/programs/trades-applied-technology">Study another trade</a></h3>
+<p>Ever since being introduced to the world of trades, I've discovered how many there are to learn. I might want to go back to school or get an apprenticeship when I'm older. I am most interested in pursuing culinary arts or carpentry.</p>
+</div>
+</div>
+
+<h2 id="contact">Contact</h2>
+<p>Email: <a href="mailto:mario.macrae@itas.ca">mario.macrae@itas.ca</a></p>
+<p>Linkedin: <a href="https://www.linkedin.com/in/mario-macrae-b6a44a38b">My profile</a></p>
+<p>Classmates:</p>
+<ul>
+<li><a href="https://brayden-brezden.github.io">Brayden's site</a></li>
+<li><a href="https://tammy587.github.io">Tammy's site</a></li>
+</ul>
+<footer>
+<p>&copy; Mario Macrae 2026</p>
+</footer>
+</body>
