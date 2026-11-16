@@ -15,4 +15,4 @@ big200MB                0.5x            189.3x
 delete                  0.7x           1658.2x
 The slowest test on my stick was git. I think that since the files were not kept in memory, the test took much longer. 
 My prediction for the test was incorrect. The write test was the second slowest, with the slowest being the git test. The test was also 75x slower, not 50x like i predicted.
-
+The pooled table has two extra columns of information that my table alone did not (usb2, ntfs-9p.)
