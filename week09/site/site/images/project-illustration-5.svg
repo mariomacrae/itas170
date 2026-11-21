@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400" role="img" aria-labelledby="t">
+  <title id="t">A person at a computer building a website, drawn in geometric shapes, with a globe, a browser window and code brackets behind them</title>
+  <defs>
+    <!-- Printed texture: sparse light specks made from noise -->
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.898  0 0 0 0 0.878  0 0 0 0 0.941  7 0 0 0 -4.2"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" fill="#4600D9"/>
+
+  <!-- Globe -->
+  <circle cx="455" cy="150" r="135" fill="#0052B8"/>
+  <ellipse cx="455" cy="150" rx="55" ry="135" fill="none" stroke="#4600D9" stroke-width="5"/>
+  <path d="M320,150 H590 M335,85 H575 M335,215 H575" stroke="#4600D9" stroke-width="5"/>
+
+  <!-- Half circle on the floor, with chain-link rings -->
+  <path d="M20,362 A90,90 0 0 1 200,362 Z" fill="#0052B8"/>
+  <circle cx="88" cy="318" r="18" fill="none" stroke="#E5E0F0" stroke-width="5"/>
+  <circle cx="112" cy="318" r="18" fill="none" stroke="#E5E0F0" stroke-width="5"/>
+
+  <!-- Triangle -->
+  <polygon points="262,30 302,30 282,64" fill="#FFE261"/>
+
+  <!-- Browser window with code brackets -->
+  <rect x="50" y="50" width="130" height="88" fill="#0052B8"/>
+  <rect x="50" y="50" width="130" height="18" fill="#E5E0F0"/>
+  <circle cx="61" cy="59" r="3" fill="#FFE261"/>
+  <circle cx="72" cy="59" r="3" fill="#4600D9"/>
+  <circle cx="83" cy="59" r="3" fill="#4600D9"/>
+  <path d="M101,92 L90,103 L101,114 M110,116 L120,90 M129,92 L140,103 L129,114" fill="none" stroke="#FFE261" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter"/>
+
+  <!-- Mouse pointer -->
+  <polygon points="0,0 0,24 17,17" transform="translate(152,108)" fill="#CBFF00" stroke="#4600D9" stroke-width="2"/>
+
+  <!-- Dots -->
+  <circle cx="40" cy="200" r="4" fill="#E5E0F0"/>
+  <circle cx="565" cy="330" r="4" fill="#E5E0F0"/>
+
+  <!-- Floor -->
+  <rect y="362" width="600" height="38" fill="#0052B8"/>
+
+  <!-- Desk -->
+  <rect x="300" y="265" width="275" height="10" fill="#E5E0F0"/>
+  <rect x="545" y="275" width="14" height="87" fill="#E5E0F0"/>
+  <rect x="360" y="275" width="10" height="87" fill="#E5E0F0"/>
+
+  <!-- Monitor showing a page layout made of a circle, a square and bars -->
+  <rect x="448" y="245" width="14" height="20" fill="#E5E0F0"/>
+  <rect x="370" y="140" width="170" height="110" fill="#4600D9"/>
+  <rect x="378" y="148" width="154" height="94" fill="#E5E0F0"/>
+  <rect x="386" y="156" width="138" height="12" fill="#0052B8"/>
+  <circle cx="410" cy="198" r="22" fill="#FFE261"/>
+  <rect x="440" y="180" width="36" height="36" fill="#4600D9"/>
+  <path d="M484,184 H522 M484,198 H522 M484,212 H508" stroke="#0052B8" stroke-width="6"/>
+  <rect x="386" y="230" width="138" height="6" fill="#0052B8"/>
+
+  <!-- Keyboard -->
+  <rect x="318" y="258" width="80" height="7" fill="#0052B8"/>
+
+  <!-- Tubular steel chair -->
+  <path d="M206,205 V296 H282 M240,296 V356 M205,357 H275" fill="none" stroke="#FFE261" stroke-width="10"/>
+
+  <!-- Person -->
+  <polygon points="238,176 262,176 268,284 232,284" fill="#CBFF00"/>
+  <path d="M258,200 L282,250 L336,250" fill="none" stroke="#CBFF00" stroke-width="14" stroke-linejoin="miter"/>
+  <path d="M240,280 L322,280 L322,352 L350,352" fill="none" stroke="#CBFF00" stroke-width="20" stroke-linejoin="miter"/>
+  <circle cx="250" cy="158" r="22" fill="#CBFF00"/>
+
+  <!-- Texture over everything -->
+  <rect width="600" height="400" filter="url(#grain)" opacity="0.18"/>
+</svg>
