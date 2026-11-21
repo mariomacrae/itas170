@@ -4,3 +4,4 @@ secrets/
 node_modules/
 *.tmp
 /certs
+nginx/.htpasswd
